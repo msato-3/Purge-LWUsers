@@ -23,8 +23,11 @@
  $forceDelete = $true
  ```
  に変更してください。
- 
+
+ 通常削除されたユーザーは、削除後 7 日以内であれば復元ができますが、即時削除されたユーザーは復元することができませんので、十分にご注意ください。
+
+
   ## 削除ユーザーの指定
- 削除対象のユーザーは、`PurgeUsers.csv` に記載します。`email`、`userId`、`externalKey:{externalKey}` の形式で指定できます。
+ 削除対象のユーザーを、`email`、`userId`、`externalKey:{externalKey}` の形式で指定します。`PurgeUsers.csv` に、1 行に一人づつ記載します。
  
  

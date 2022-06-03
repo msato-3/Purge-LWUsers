@@ -11,7 +11,6 @@ $SvcAccount = 'xxxxx.serviceaccount@yourcompanygroupname'
 
 $forceDelete = $false
 
-$RateLimit = 240
 ## 入出力ファイル を指定します。
 $UsersCSV = '.\purgeUsers.csv'
 
@@ -69,7 +68,7 @@ function Remove-LWUser($UserId) {
         Initialize-Header
     }
     else {
-        Start-Sleep  -Milliseconds $sleep
+        Start-Sleep 1
     }
 
     $URLEncodedUserId = [System.Web.HttpUtility]::UrlEncode($UserId)

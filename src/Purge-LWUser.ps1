@@ -10,16 +10,17 @@ $SvcAccount = 'xxxxx.serviceaccount@yourcompanygroupname'
 #$domainId = 12345678
 
 $forceDelete = $false
-
+$RateLimit = 240
 ## 入出力ファイル を指定します。
 $UsersCSV = '.\purgeUsers.csv'
+# ファイル フォーマット
+# 削除ユーサーは、csv の userid 列に、email, userId (GUID), externalKey:{externalKey} で指定
+
 
 ## 出力ログが不要な場合にはコメントアウトしてください。
 $resultLog = '.\PurgeResult.log'       # リクエスト処理結果ログ
 
-# ファイル フォーマット
-# 削除ユーサーは、csv の userid 列に、email, userId (GUID), externalKey:{externalKey} で指定
-
+$sleep = [int] (0.9 * (60 * 1000) / $RateLimit )
 
 $global:Header = $null
 $APIEndPoint = 'https://www.worksapis.com/v1.0/users/'
@@ -67,7 +68,7 @@ function Remove-LWUser($UserId) {
         Initialize-Header
     }
     else {
-        Start-Sleep 1
+        Start-Sleep  -Milliseconds $sleep
     }
 
     $URLEncodedUserId = [System.Web.HttpUtility]::UrlEncode($UserId)
